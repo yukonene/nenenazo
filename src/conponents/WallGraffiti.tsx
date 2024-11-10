@@ -16,15 +16,15 @@ const style = {
 };
 
 type Props = {
-  openPanel: boolean;
-  handleClosePanel: () => void;
+  openWall: boolean;
+  handleCloseWall: () => void;
 };
 
-export const DoorKeyPanelModal = ({ openPanel, handleClosePanel }: Props) => {
+export const WallGraffiti = ({ openWall, handleCloseWall }: Props) => {
   return (
     <Modal
-      open={openPanel}
-      onClose={handleClosePanel}
+      open={openWall}
+      onClose={handleCloseWall}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
