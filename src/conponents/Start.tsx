@@ -32,16 +32,44 @@ export const Start = () => {
   }, []);
 
   return (
-    <div>
-      <div className={startStyles.text}>{text}</div>
+    <main
+      style={{
+        position: 'relative',
+      }}
+    >
+      <div
+        className={startStyles.text}
+        style={{
+          position: 'absolute',
+          transform: 'translate(-50%,-50%)',
+          textAlign: 'center',
+          top: '40%',
+          left: '50%',
+        }}
+      >
+        {text}
+      </div>
       {startFlag && (
         <Link href="/play">
-          <Button variant="contained" style={{ backgroundColor: '#32cd32' }}>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#32cd32',
+              position: 'absolute',
+              transform: 'translate(-50%,-50%)',
+              top: '50%',
+              left: '50%',
+            }}
+          >
             start
           </Button>
         </Link>
       )}
-    </div>
+      <img
+        src="/yuki.jpg"
+        style={{ objectFit: 'contain', width: '100%' }}
+      ></img>
+    </main>
   );
 };
 

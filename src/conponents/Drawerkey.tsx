@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -12,19 +14,21 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  pt: 2,
+  px: 4,
+  pb: 3,
 };
 
 type Props = {
-  openPanel: boolean;
-  handleClosePanel: () => void;
+  openDrawerkey: boolean;
+  handleCloseDrawerkey: () => void;
 };
 
-export const DoorKeyPanelModal = ({ openPanel, handleClosePanel }: Props) => {
+export const Drawerkey = ({ openDrawerkey, handleCloseDrawerkey }: Props) => {
   return (
     <Modal
-      open={openPanel}
-      onClose={handleClosePanel}
+      open={openDrawerkey}
+      onClose={handleCloseDrawerkey}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -36,7 +40,7 @@ export const DoorKeyPanelModal = ({ openPanel, handleClosePanel }: Props) => {
           Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
         </Typography>
         <img
-          src="/image/keypanel.jpg"
+          src="/image/drawer.jpg"
           style={{ objectFit: 'contain', width: '100%' }}
         />
       </Box>
