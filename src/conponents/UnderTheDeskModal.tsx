@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 
 const style = {
-  position: 'absolute',
+  position: 'relative',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -20,29 +20,45 @@ const style = {
 };
 
 type Props = {
-  openDrawerModal: boolean;
-  handleCloseDrawerModal: () => void;
+  openUnderTheDeskModal: boolean;
+  handleCloseUnderTheDeskModal: () => void;
+  haveKey: boolean;
+  setHaveKey: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const DrawerModal = ({
-  openDrawerModal,
-  handleCloseDrawerModal,
+export const UnderTheDeskModal = ({
+  openUnderTheDeskModal,
+  handleCloseUnderTheDeskModal,
+  haveKey,
+  setHaveKey,
 }: Props) => {
   return (
     <Modal
-      open={openDrawerModal}
-      onClose={handleCloseDrawerModal}
+      open={openUnderTheDeskModal}
+      onClose={handleCloseUnderTheDeskModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          引き出し
+          ・・・
         </Typography>
         <img
-          src="/image/drawer.jpg"
+          src={haveKey ? '/image/diary3.jpg' : '/image/drawer.jpg'}
           style={{ objectFit: 'contain', width: '100%' }}
         />
+        <div //机裏クリック
+          style={{
+            position: 'absolute',
+            top: '51%',
+            left: '39%',
+            // width: '9%',
+            // height: '4%',
+          }}
+          onClick={() => setHaveKey(true)}
+        >
+          key
+        </div>
       </Box>
     </Modal>
   );
