@@ -20,22 +20,24 @@ const style = {
 };
 
 type Props = {
-  openUnderTheDeskModal: boolean;
-  handleCloseUnderTheDeskModal: () => void;
+  //props受け取る準備
+  isOpen: boolean;
+  onClose: () => void;
   haveKey: boolean;
   setHaveKey: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const UnderTheDeskModal = ({
-  openUnderTheDeskModal,
-  handleCloseUnderTheDeskModal,
+  //props受け取った内容を入れ込む
+  isOpen,
+  onClose,
   haveKey,
   setHaveKey,
 }: Props) => {
   return (
     <Modal
-      open={openUnderTheDeskModal}
-      onClose={handleCloseUnderTheDeskModal}
+      open={isOpen}
+      onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >

@@ -2,22 +2,36 @@ import { useEffect, useState } from 'react';
 import * as React from 'react';
 import { DoorKeyPanelModal } from './DoorKeyPanelModal';
 import { WallGraffiti } from './WallGraffiti';
-import { DrawerModal } from './Drawerkey';
+import { DrawerModal } from './Drawer';
 import { UnderTheDeskModal } from './UnderTheDeskModal';
+import { Snackbar } from '@mui/material';
+import { useRouter } from 'next/router';
+import { CalendarModal } from './CalendarModal';
 
 export const Play = () => {
-  const [openPanel, setOpenPanel] = React.useState(false); //パネル
+  const [isDoorKeyPanelModalOpen, setIsDoorKeyPanelModalOpen] =
+    React.useState(false); //パネル
   // const handleOpenPanel = () => setOpenPanel(true);
   // const handleClosePanel = () => setOpenPanel(false);
 
-  const [openWall, setOpenWall] = React.useState(false); //壁
+  const [isWallModalOpen, setIsWallModalOpen] = React.useState(false); //壁
 
-  const [openDrawerModal, setOpenDrawerModal] = React.useState(false); //引き出し
+  const [haveKey, setHaveKey] = React.useState(false); //鍵取得（propsの内容設定）
+  const [isDrawerKeyOpen, setIisDrawerKeyOpen] = React.useState(false); //引出しの鍵あける
+  const [isDrawerLockMessageVigible, setIsDrawerLockMessageVigible] =
+    React.useState(false); //鍵なし引出し
+  const [isDrawerModalOpen, setIsDrawerModalOpen] = React.useState(false); //引き出し
 
-  const [openUnderTheDeskModal, setOpenUnderTheDeskModal] =
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = React.useState(false); //カレンダー
+
+  const [isUnderTheDeskModalOpen, setIsUnderTheDeskModalOpen] =
     React.useState(false); //机裏クリック
 
-  const [haveKey, setHaveKey] = React.useState(false); //鍵取得
+  const [isDoorKeyOpen, setIsDoorKeyOpen] = React.useState(false); //ドアロック
+  const [isDoorLockMessageVigible, setIsDoorLockMessageVigible] =
+    React.useState(false); //ドアロックメッセージ
+
+  const router = useRouter();
 
   const [timer, setTimer] = useState(300); //タイマー
   useEffect(() => {
@@ -26,6 +40,7 @@ export const Play = () => {
         const counter = prev - 1;
         if (counter === 0) {
           window.clearInterval(intervalId);
+          // router.push('/blackout');
         }
         return counter;
       });
@@ -49,21 +64,29 @@ export const Play = () => {
           width: '2.5%',
           height: '6%',
         }}
-        onClick={() => setOpenPanel(true)}
+        onClick={() => setIsDoorKeyPanelModalOpen(true)}
       ></div>
       <DoorKeyPanelModal
-        openPanel={openPanel}
-        handleClosePanel={() => setOpenPanel(false)} //パネルクリック
+        isOpen={isDoorKeyPanelModalOpen}
+        onClose={() => setIsDoorKeyPanelModalOpen(false)} //パネルクリックここまで
+        setIsDoorKeyOpen={setIsDoorKeyOpen}
       />
       <div //らくがきクリック
-        style={{ position: 'absolute', top: '20%', left: '10%' }}
-        onClick={() => setOpenWall(true)}
+        style={{ position: 'absolute', top: '76%', left: '76%' }}
+        onClick={() => setIsWallModalOpen(true)}
       >
         wall
       </div>
       <WallGraffiti
-        openWall={openWall}
-        handleCloseWall={() => setOpenWall(false)}
+        isOpen={isWallModalOpen}
+        onClose={() => setIsWallModalOpen(false)}
+      />
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isDrawerLockMessageVigible}
+        onClose={() => setIsDrawerLockMessageVigible(false)}
+        message="鍵がかかっているようだ"
+        autoHideDuration={1200}
       />
       <div //引き出し
         style={{
@@ -73,13 +96,18 @@ export const Play = () => {
           width: '7%',
           height: '4%',
         }}
-        onClick={() => setOpenDrawerModal(true)}
+        onClick={() => {
+          if (haveKey === true) {
+            setIsDrawerModalOpen(true);
+          } else {
+            setIsDrawerLockMessageVigible(true);
+          }
+        }}
       ></div>
       <DrawerModal
-        openDrawerModal={openDrawerModal}
-        handleCloseDrawerModal={() => setOpenDrawerModal(false)} //引き出し
+        isOpen={isDrawerModalOpen}
+        onClose={() => setIsDrawerModalOpen(false)} //引き出しここまで
       />
-
       <div //机裏クリック
         style={{
           position: 'absolute',
@@ -88,12 +116,40 @@ export const Play = () => {
           width: '9%',
           height: '4%',
         }}
-        onClick={() => setOpenUnderTheDeskModal(true)}
+        onClick={() => setIsUnderTheDeskModalOpen(true)}
       ></div>
       <UnderTheDeskModal
-        openUnderTheDeskModal={openUnderTheDeskModal}
-        handleCloseUnderTheDeskModal={() => setOpenUnderTheDeskModal(false)} //机裏クリック
+        haveKey={haveKey} //propsを送る準備
+        setHaveKey={setHaveKey}
+        isOpen={isUnderTheDeskModalOpen}
+        onClose={() => setIsUnderTheDeskModalOpen(false)} //机裏クリックここまで
       />
+      <div //カレンダークリック
+        style={{
+          position: 'absolute',
+          top: '15%',
+          left: '53%',
+          width: '7%',
+          height: '16%',
+        }}
+        onClick={() => setIsCalendarModalOpen(true)}
+      ></div>
+      <CalendarModal
+        isOpen={isCalendarModalOpen}
+        onClose={() => setIsCalendarModalOpen(false)} //カレンダークリックここまで
+      />
+      {haveKey && ( //鍵表示
+        <img
+          style={{
+            position: 'absolute',
+            top: '80%',
+            left: '5%',
+            width: '10%',
+            height: '10%',
+          }}
+          src="/image/key.jpg"
+        /> //鍵表示ここまで
+      )}
       <div
         style={{
           position: 'absolute',
@@ -104,6 +160,30 @@ export const Play = () => {
       >
         {Math.floor(timer / 60)}分{timer % 60}秒
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isDoorLockMessageVigible}
+        onClose={() => setIsDoorLockMessageVigible(false)}
+        message="鍵がかかっているようだ"
+        autoHideDuration={1200}
+      />
+      <div
+        style={{
+          position: 'absolute',
+
+          top: '38%',
+          left: '20%',
+          width: '6%',
+          height: '4%',
+        }}
+        onClick={() => {
+          if (isDoorKeyOpen === true) {
+            router.push('/clear');
+          } else {
+            setIsDoorLockMessageVigible(true);
+          }
+        }}
+      ></div>
       <img
         src="/image/room.jpg"
         style={{ objectFit: 'contain', width: '100%' }}

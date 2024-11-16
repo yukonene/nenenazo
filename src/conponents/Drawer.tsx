@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
+import { DiaryModal } from './DiaryModal';
 
 const style = {
   position: 'absolute',
@@ -20,18 +21,17 @@ const style = {
 };
 
 type Props = {
-  openDrawerModal: boolean;
-  handleCloseDrawerModal: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 };
 
-export const DrawerModal = ({
-  openDrawerModal,
-  handleCloseDrawerModal,
-}: Props) => {
+export const DrawerModal = ({ isOpen, onClose }: Props) => {
+  const [isDiaryModalOpen, setIsDiaryModalOpen] = React.useState(false);
+
   return (
     <Modal
-      open={openDrawerModal}
-      onClose={handleCloseDrawerModal}
+      open={isOpen}
+      onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -42,6 +42,20 @@ export const DrawerModal = ({
         <img
           src="/image/drawer.jpg"
           style={{ objectFit: 'contain', width: '100%' }}
+        />
+        <div //引き出し
+          style={{
+            position: 'absolute',
+            top: '49%',
+            left: '45%',
+            width: '17%',
+            height: '12%',
+          }}
+          onClick={() => setIsDiaryModalOpen(true)}
+        ></div>
+        <DiaryModal
+          isOpen={isDiaryModalOpen}
+          onClose={() => setIsDiaryModalOpen(false)}
         />
       </Box>
     </Modal>
