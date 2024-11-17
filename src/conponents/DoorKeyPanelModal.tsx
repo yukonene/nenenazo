@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import DoorKeyPanelModalStyles from './DoorKeyPanelModal.module.css';
-import { red } from '@mui/material/colors';
 
 const style = {
   position: 'absolute',

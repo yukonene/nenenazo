@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 
 const style = {
@@ -46,6 +44,7 @@ export const UnderTheDeskModal = ({
           ・・・
         </Typography>
         <img
+          alt="diary"
           src={haveKey ? '/image/diary3.jpg' : '/image/drawer.jpg'}
           style={{ objectFit: 'contain', width: '100%' }}
         />

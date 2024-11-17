@@ -17,7 +17,6 @@ export const Play = () => {
   const [isWallModalOpen, setIsWallModalOpen] = React.useState(false); //壁
 
   const [haveKey, setHaveKey] = React.useState(false); //鍵取得（propsの内容設定）
-  const [isDrawerKeyOpen, setIisDrawerKeyOpen] = React.useState(false); //引出しの鍵あける
   const [isDrawerLockMessageVigible, setIsDrawerLockMessageVigible] =
     React.useState(false); //鍵なし引出し
   const [isDrawerModalOpen, setIsDrawerModalOpen] = React.useState(false); //引き出し
