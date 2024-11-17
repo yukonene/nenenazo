@@ -2,6 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import DoorKeyPanelModalStyles from './DoorKeyPanelModal.module.css';
+import { red } from '@mui/material/colors';
 
 const style = {
   position: 'absolute',
@@ -31,7 +33,7 @@ export const DoorKeyPanelModal = ({
     let newResult = result + number;
     if (newResult.length === 4) {
       if (newResult === '1224') {
-        newResult = 'OPEN';
+        newResult = 'OPEN!';
         setIsDoorKeyOpen(true);
       } else {
         newResult = 'ERROR';
@@ -50,86 +52,100 @@ export const DoorKeyPanelModal = ({
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <div className="App">
-          <p className="string-box">{result}</p>
-          <div className="column-box">
-            <div className="row-box">
-              <button
-                className="normal"
-                onClick={() => handleCalculation('7')}
-                disabled={result.length > 3}
-              >
-                7
-              </button>
-              <button
-                className="normal"
-                onClick={() => handleCalculation('8')}
-                disabled={result.length > 3}
-              >
-                8
-              </button>
-              <button
-                className="normal"
-                onClick={() => handleCalculation('9')}
-                disabled={result.length > 3}
-              >
-                9
-              </button>
-            </div>
-            <div className="row-box">
-              <button
-                className="normal"
-                onClick={() => handleCalculation('4')}
-                disabled={result.length > 3}
-              >
-                4
-              </button>
-              <button
-                className="normal"
-                onClick={() => handleCalculation('5')}
-                disabled={result.length > 3}
-              >
-                5
-              </button>
-              <button
-                className="normal"
-                onClick={() => handleCalculation('6')}
-                disabled={result.length > 3}
-              >
-                6
-              </button>
-            </div>
-            <div className="row-box">
-              <button
-                className="normal"
-                onClick={() => handleCalculation('1')}
-                disabled={result.length > 3}
-              >
-                1
-              </button>
-              <button
-                className="normal"
-                onClick={() => handleCalculation('2')}
-                disabled={result.length > 3}
-              >
-                2
-              </button>
-              <button
-                className="normal"
-                onClick={() => handleCalculation('3')}
-                disabled={result.length > 3}
-              >
-                3
-              </button>
-            </div>
-            <div className="row-box">
-              <button
-                className="normal"
-                onClick={() => handleCalculation('0')}
-                disabled={result.length > 3}
-              >
-                0
-              </button>
+        <div className={DoorKeyPanelModalStyles.panel}>
+          <div className={DoorKeyPanelModalStyles.app}>
+            <p
+              className={DoorKeyPanelModalStyles.display}
+              style={{
+                color:
+                  result === 'ERROR'
+                    ? 'red'
+                    : result === 'OPEN!'
+                    ? 'blue'
+                    : 'black',
+              }}
+            >
+              {result}
+            </p>
+            <div className={DoorKeyPanelModalStyles.column}>
+              <div className={DoorKeyPanelModalStyles.row}>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('7')}
+                  disabled={result.length > 3}
+                >
+                  7
+                </button>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('8')}
+                  disabled={result.length > 3}
+                >
+                  8
+                </button>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('9')}
+                  disabled={result.length > 3}
+                >
+                  9
+                </button>
+              </div>
+              <div className={DoorKeyPanelModalStyles.row}>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('4')}
+                  disabled={result.length > 3}
+                >
+                  4
+                </button>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('5')}
+                  disabled={result.length > 3}
+                >
+                  5
+                </button>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('6')}
+                  disabled={result.length > 3}
+                >
+                  6
+                </button>
+              </div>
+              <div className={DoorKeyPanelModalStyles.row}>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('1')}
+                  disabled={result.length > 3}
+                >
+                  1
+                </button>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('2')}
+                  disabled={result.length > 3}
+                >
+                  2
+                </button>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('3')}
+                  disabled={result.length > 3}
+                >
+                  3
+                </button>
+              </div>
+              <div className={DoorKeyPanelModalStyles.row}>
+                <button
+                  className={DoorKeyPanelModalStyles.normal}
+                  onClick={() => handleCalculation('0')}
+                  disabled={result.length > 3}
+                >
+                  0
+                </button>
+              </div>
             </div>
           </div>
         </div>
