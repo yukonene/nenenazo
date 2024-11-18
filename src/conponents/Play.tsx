@@ -71,14 +71,18 @@ export const Play = () => {
         setIsDoorKeyOpen={setIsDoorKeyOpen}
       />
       <div //らくがきクリック
-        style={{ position: 'absolute', top: '76%', left: '76%' }}
+        style={{
+          position: 'absolute',
+          top: '77%',
+          left: '77%',
+          width: '2%',
+          height: '4%',
+        }}
         onClick={() => setIsWallModalOpen(true)}
-      >
-        wall
-      </div>
+      ></div>
       <WallGraffiti
         isOpen={isWallModalOpen}
-        onClose={() => setIsWallModalOpen(false)}
+        onClose={() => setIsWallModalOpen(false)} //らくがきクリックここまで
       />
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -92,7 +96,7 @@ export const Play = () => {
           position: 'absolute',
           top: '46%',
           left: '51.5%',
-          width: '7%',
+          width: '9%',
           height: '4%',
         }}
         onClick={() => {
@@ -141,12 +145,11 @@ export const Play = () => {
         <img
           style={{
             position: 'absolute',
-            top: '80%',
-            left: '5%',
-            width: '10%',
-            height: '10%',
+            top: '78%',
+            left: '8%',
+            height: '12%',
           }}
-          src="/image/key.jpg"
+          src="/image/key.png"
         /> //鍵表示ここまで
       )}
       <div

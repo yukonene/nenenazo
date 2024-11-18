@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { Typography } from '@mui/material';
 
 const style = {
   position: 'relative',
@@ -40,26 +39,21 @@ export const UnderTheDeskModal = ({
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          ・・・
-        </Typography>
         <img
           alt="diary"
-          src={haveKey ? '/image/diary3.jpg' : '/image/drawer.jpg'}
+          src={haveKey ? '/image/behinddeskafter.jpg' : '/image/behinddesk.jpg'}
           style={{ objectFit: 'contain', width: '100%' }}
         />
         <div //机裏クリック
           style={{
             position: 'absolute',
-            top: '51%',
-            left: '39%',
-            // width: '9%',
-            // height: '4%',
+            top: '43%',
+            left: '43%',
+            width: '9%',
+            height: '10%',
           }}
           onClick={() => setHaveKey(true)}
-        >
-          key
-        </div>
+        ></div>
       </Box>
     </Modal>
   );
