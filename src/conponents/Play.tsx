@@ -39,7 +39,7 @@ export const Play = () => {
         const counter = prev - 1;
         if (counter === 0) {
           window.clearInterval(intervalId);
-          // router.push('/blackout');
+          router.push('/blackout');
         }
         return counter;
       });
