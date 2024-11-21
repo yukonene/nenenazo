@@ -5,7 +5,11 @@ import Link from 'next/link';
 
 export const Start = () => {
   const [text, setText] = useState('');
-  const startText = ['吾輩は猫である\n', '名前はまだない\n', 'にゃー\n'];
+  const startText = [
+    '扉が開かない。\n',
+    '閉じ込められた？\n',
+    '仕掛けを解いて脱出しよう！\n',
+  ];
   const [startFlag, setStartFlag] = useState(false);
 
   const sleep = (ms: number) => {
@@ -54,11 +58,13 @@ export const Start = () => {
           <Button
             variant="contained"
             style={{
-              backgroundColor: '#32cd32',
+              backgroundColor: '#666666',
               position: 'absolute',
               transform: 'translate(-50%,-50%)',
-              top: '50%',
+              top: '70%',
               left: '50%',
+              width: '15%',
+              height: '10%',
             }}
           >
             start
@@ -66,7 +72,7 @@ export const Start = () => {
         </Link>
       )}
       <img
-        src="/yuki.jpg"
+        src="/image/start.jpg"
         style={{ objectFit: 'contain', width: '100%' }}
       ></img>
     </main>
